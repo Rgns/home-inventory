@@ -29,9 +29,9 @@ public class CategoryService {
 
 
     public Category updateCategory(UpdateCategory request){
-        Category oldCategory = getCategory(request.getOldCategory().getItemCategory());
+        Category oldCategory = getCategory(request.getOldCategory());
         deleteCategory(oldCategory);
-        return categoryRepository.save(request.getNewCategory());
+        return categoryRepository.save(new Category(request.getNewCategory()));
     }
 
 
@@ -40,7 +40,8 @@ public class CategoryService {
     }
 
     public List<String> getCategoryList(){
-        return categoryRepository.findAll().stream().map(category -> category.getItemCategory()).collect(Collectors.toList());
+       // return categoryRepository.findAll().stream().map(category -> category.getItemCategory()).collect(Collectors.toList());
+        return categoryRepository.findAll().stream().map(Category::getItemCategory).collect(Collectors.toList());
     }
 
     public void deleteCategory(Category request){

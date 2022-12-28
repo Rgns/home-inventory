@@ -1,6 +1,5 @@
 package com.rg.homeinventory.dto;
 
-import com.rg.homeinventory.entities.Category;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -14,8 +13,8 @@ import javax.validation.constraints.NotNull;
 public class UpdateCategory {
 
     @NotNull(message = "old category cannot be null")
-    Category oldCategory;
+    String oldCategory;
 
     @NotNull(message = "new category cannot be null")
-    Category newCategory;
+    String newCategory;
 }
