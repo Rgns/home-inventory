@@ -1,15 +1,12 @@
 package com.rg.homeinventory.services;
 
 import com.rg.homeinventory.entities.Item;
-import com.rg.homeinventory.entities.Product;
-import com.rg.homeinventory.exceptions.ItemAlreadyAddedException;
-import com.rg.homeinventory.exceptions.ItemNotFoundException;
-import com.rg.homeinventory.model.ItemFilter;
+import com.rg.homeinventory.model.InventoryFilter;
 import com.rg.homeinventory.repositries.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import java.util.List;
 
 @Service
 public class ItemService {
@@ -17,7 +14,15 @@ public class ItemService {
     @Autowired
     InventoryRepository inventoryRepository;
 
-    public Item addItem(Item item){
+
+    @Autowired ProductService productService;
+
+    public List<Item> getFilteredItem(InventoryFilter inventoryFilter) {
+
+        return null;
+    }
+
+   /* public Item addItem(Item item){
         Product itemDetails = item.getItemDetails();
         if (sameItemExists(new ItemFilter(itemDetails.getName(),itemDetails.getBrandName(),itemDetails.getCategory()))){
             throw new ItemAlreadyAddedException("Item has been already Added");
@@ -52,5 +57,5 @@ public class ItemService {
     public Item getAllItems(){
 
         return null;
-    }
+    }*/
 }

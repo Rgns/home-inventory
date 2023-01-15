@@ -11,6 +11,9 @@ import com.rg.homeinventory.repositries.BrandRepository;
 import com.rg.homeinventory.repositries.CategoryRepository;
 import com.rg.homeinventory.repositries.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -71,7 +74,9 @@ public class ProductService {
         return 0 != productRepository.findByNameAndBrandNameAndCategory(productFilter.getName(),productFilter.getBrandName(),productFilter.getItemCategory()).size();
     }
 
-    public List<Product> getAllProducts(){
-        return productRepository.findAll();
+    public Page<Product> getAllProducts(String filter1, Integer pageSize, Integer pageNo, String sortBy){
+       // return productRepository.findAll();
+
+        return productRepository.findByBrandName(filter1, PageRequest.of(pageNo,pageSize, Sort.Direction.ASC,sortBy));
     }
 }

@@ -1,17 +1,19 @@
 package com.rg.homeinventory.repositries;
 
 
-import com.rg.homeinventory.entities.Item;
+import com.rg.homeinventory.entities.InventoryDetails;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Date;
 import java.util.UUID;
 
 @Repository
-public interface InventoryRepository  extends MongoRepository<Item,String> {
+public interface InventoryRepository  extends MongoRepository<InventoryDetails,UUID> {
 
-    public Item findByItemId(UUID uuid);
+    public InventoryDetails findByProductId(UUID uuid);
 
-    public List<Item> findByItemDetails_NameAndItemDetails_BrandNameAndItemDetails_Category(String itemDetails_name, String itemDetails_brandName, String itemDetails_category);
+    Page<InventoryDetails> findByInventoryStatus(String inventoryStatus ,Pageable pageable);
 }
